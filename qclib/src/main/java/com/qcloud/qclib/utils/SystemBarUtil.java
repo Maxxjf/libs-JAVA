@@ -739,10 +739,14 @@ public class SystemBarUtil {
      * @return the boolean
      */
     public static boolean isSupportStatusBarDarkFont() {
-        if (OSUtils.isMIUI6Later() || OSUtils.isFlymeOS4Later()
-                || (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)) {
+        if (isMIUI()) {
+            return OSUtils.isMIUI6Later();
+        } else if (isFlyme()) {
+            return OSUtils.isFlymeOS4Later();
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return true;
-        } else
+        } else {
             return false;
+        }
     }
 }

@@ -33,10 +33,16 @@ public class OSUtils {
      */
     public static boolean isMIUI6Later() {
         String version = getMIUIVersion();
-        if ((!version.isEmpty() && Integer.valueOf(version.substring(1)) >= 6)) {
-            return true;
-        } else
+        if (!version.isEmpty()) {
+            int versionCode = Integer.valueOf(version.substring(1));
+            if (versionCode >= 6 && versionCode < 9) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
             return false;
+        }
     }
 
     /**
