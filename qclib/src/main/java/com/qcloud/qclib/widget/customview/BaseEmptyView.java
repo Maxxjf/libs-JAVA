@@ -122,6 +122,15 @@ public abstract class BaseEmptyView extends BaseLinearLayout {
         }
     }
 
+    public void noNetWork(int iconRes) {
+        if (mTvTip != null) {
+            mTvTip.setText(R.string.tip_no_net);
+        }
+        if (mImageIcon != null) {
+            mImageIcon.setImageResource(iconRes);
+        }
+    }
+
     /**
      * 设置图标
      */
