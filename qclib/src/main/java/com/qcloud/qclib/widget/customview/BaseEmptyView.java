@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.qcloud.qclib.R;
 import com.qcloud.qclib.base.BaseLinearLayout;
+import com.qcloud.qclib.utils.NetUtils;
 import com.qcloud.qclib.utils.StringUtils;
 
 /**
@@ -37,6 +38,9 @@ public abstract class BaseEmptyView extends BaseLinearLayout {
 
     public BaseEmptyView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        if (!NetUtils.isConnected(context)){
+            noNetWork();
+        }
     }
 
     @Override
@@ -82,6 +86,7 @@ public abstract class BaseEmptyView extends BaseLinearLayout {
                 }
             }
         });
+
     }
 
     /**
@@ -112,6 +117,7 @@ public abstract class BaseEmptyView extends BaseLinearLayout {
      */
     public void noNetWork() {
         if (mTvTip != null) {
+            mImageIcon.setImageResource(R.drawable.icon_no_network);
             mTvTip.setText(R.string.tip_no_net);
         }
     }
