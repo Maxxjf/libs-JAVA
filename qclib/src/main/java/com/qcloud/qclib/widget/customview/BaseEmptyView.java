@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.qcloud.qclib.R;
 import com.qcloud.qclib.base.BaseLinearLayout;
-import com.qcloud.qclib.utils.NetUtils;
 import com.qcloud.qclib.utils.StringUtils;
 
 /**
@@ -38,9 +37,6 @@ public abstract class BaseEmptyView extends BaseLinearLayout {
 
     public BaseEmptyView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        if (!NetUtils.isConnected(context)){
-            noNetWork();
-        }
     }
 
     @Override
@@ -116,20 +112,22 @@ public abstract class BaseEmptyView extends BaseLinearLayout {
      * 没有网络了
      */
     public void noNetWork() {
-        if (mTvTip != null) {
+        if (mTvTip != null && mImageIcon != null) {
             mImageIcon.setImageResource(R.drawable.icon_no_network);
             mTvTip.setText(R.string.tip_no_net);
         }
     }
 
-    public void noNetWork(int iconRes) {
-        if (mTvTip != null) {
-            mTvTip.setText(R.string.tip_no_net);
-        }
-        if (mImageIcon != null) {
-            mImageIcon.setImageResource(iconRes);
+    /**
+     * 有网络了
+     */
+    public void hasNetWork() {
+        if (mTvTip != null && mImageIcon != null) {
+            mImageIcon.setImageResource(setIcon());
+            mTvTip.setText(setDefaultTip());
         }
     }
+
 
     /**
      * 设置图标
